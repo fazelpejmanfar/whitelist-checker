@@ -1,7 +1,9 @@
 {
-  "name": "nextjs-etherjs-boilerplate",
+  "name": "whitelist-checker",
   "description": "Created By Fazel Pejmanfar\n do the design yourself :|",
-  "author": {"name": "Fazel Pejmanfar"},
+  "author": {
+    "name": "Fazel Pejmanfar"
+  },
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -14,7 +16,7 @@
     "next": "12.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-hot-toast": "^2.4.0"
+    "swr": "^2.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.12",

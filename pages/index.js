@@ -2,14 +2,25 @@ import Head from "next/head";
 import Image from "next/image";
 import { useState, useContext } from "react";
 import Header from "../components/Header";
+import useSWR from "swr";
 
-export default function Home({ res }) {
+
+
+export default function Home() {
+
+  const fetcher = (url) => fetch(url).then((res) => res.json());
+  const { data, error } = useSWR(
+    "/Whitelist/Accounts.json",
+    fetcher
+  );
+  const WLS = data;
+
   const [Message, setMSG] = useState(
     <p className="sm:text-xl text-lg text-black">Paste Your Address</p>
   );
 
   const HandleCheck = (addr) => {
-    let loweracc = res.map((acc) => {
+    let loweracc = WLS.map((acc) => {
       return acc.toLowerCase();
     });
     let useradd = addr.toLowerCase();
@@ -58,17 +69,4 @@ export default function Home({ res }) {
       </div>
     </div>
   );
-}
-
-export async function getServerSideProps(context) {
-  let URL = context.req.headers.host;
-
-  const getwl = await fetch(`http://${URL}/Whitelist/Accounts.json`);
-  const res = await getwl.json();
-
-  return {
-    props: {
-      res,
-    },
-  };
 }
